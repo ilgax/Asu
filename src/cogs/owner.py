@@ -104,8 +104,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
 
     @commands.command(name="bcreatechannel")
     @commands.is_owner()
-    async def backdoor_create_channel_prefix(self, ctx: commands.Context, channel_type: str = "t",
-                                             channel_name: str = "Asu"):
+    async def backdoor_create_channel_prefix(self, ctx: commands.Context, channel_type: str = "t", channel_name: str = "Asu"):
         if channel_type.lower() == "t":
             await ctx.guild.create_text_channel(channel_name)
         elif channel_type.lower() == "v":
