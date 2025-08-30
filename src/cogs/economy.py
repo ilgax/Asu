@@ -71,13 +71,11 @@ class EconomyCog(commands.Cog, name="Economy"):
             await interaction.response.send_message(f"{target_user.display_name} does not have an account. Use /register to create one.", ephemeral=True)
 
     @nextcord.slash_command(name="baladd", description="Add money to a user's account.", guild_ids=[config.GUILD_ID])
+    @commands.has_permissions(administrator=True)
     async def baladd(self, interaction: nextcord.Interaction, user: nextcord.Member, amount: int):
-        if not interaction.user.guild_permissions.administrator:
-            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
-        else:
-            target_user = user or interaction.user
-            await self.update_balance(target_user.id, amount)
-            await interaction.response.send_message(f"Added {amount} to {target_user.display_name}'s balance.")
+        target_user = user or interaction.user
+        await self.update_balance(target_user.id, amount)
+        await interaction.response.send_message(f"Added {amount} to {target_user.display_name}'s balance.")
 
 # --- Gambling Cog ---
 
